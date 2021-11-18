@@ -20,78 +20,79 @@ final ButtonStyle flatButtonStyle = TextButton.styleFrom(
 class LoginPage extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
-      return Scaffold(
+    return Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-        ),
+        appBar: AppBar(),
         body: Column(
           children: <Widget>[
             Column(
               children: [
                 Container(
-                  height: 170.0,
-                  width: 400.0,
-                  padding: const EdgeInsets.only(top: 100.0),
-                  //decoration: BoxDecoration(border: Border.all(color: Colors.red)),
+                    height: 170.0,
+                    width: 400.0,
+                    padding: const EdgeInsets.only(top: 100.0),
+                    //decoration: BoxDecoration(border: Border.all(color: Colors.red)),
                     child: const Align(
                       alignment: Alignment.topCenter,
                       child: Text(
-                      'Hermes Login',
-                      style: TextStyle(
-                        fontFamily: 'avenir',
-                        fontSize: 30,
-                      ),
-                    ),
-                  )
-                ),
-                Column(
-                  children: <Widget>[
-                    RoundedInputField(
-                        hintText: "Email",
-                        onChanged: (value) {  },
-                        ctrl: controller.emailInput,
-                      ),
-                      Obx(
-                      () => RoundedPasswordField(
-                        showPass: controller.showPass.value,
-                        changeButtonPass: () => {
-                          controller.showPass.value = !controller.showPass.value
-                        },
-                        ctrl: controller.passwordInput,
-                        onChanged: (value) {},
-                      )
-                    ),
-                    Obx(() => Visibility(
-                    visible: !controller.loading.value,
-                    child: RoundedButton(
-                      press: () => controller.login(),
-                      text: 'Login',
-                    ))),
-                    Obx(
-                  () => Visibility(
-                    visible: controller.loading.value,
-                    child: Container(
-                      margin: EdgeInsets.symmetric(vertical: 10),
-                      width: Get.width * 0.8,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(29),
-                        child: TextButton(
-                          onPressed: () => {},
-                          style: flatButtonStyle,
-                          child: CircularProgressIndicator(
-                            color: Colors.white,
-                          ),
+                        'Hermes Login',
+                        style: TextStyle(
+                          fontFamily: 'avenir',
+                          fontSize: 30,
                         ),
                       ),
-                    ),
-                  ),
-                ),
-                  ],
-                )
+                    )),
+                Column(children: <Widget>[
+                  Form(
+                      key: controller.formKey,
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            RoundedInputField(
+                              hintText: "Email",
+                              onChanged: (value) {},
+                              ctrl: controller.emailInput,
+                            ),
+                            Obx(() => RoundedPasswordField(
+                                  showPass: controller.showPass.value,
+                                  changeButtonPass: () => {
+                                    controller.showPass.value =
+                                        !controller.showPass.value
+                                  },
+                                  ctrl: controller.passwordInput,
+                                  onChanged: (value) {},
+                                )),
+                            Obx(() => Visibility(
+                                visible: !controller.loading.value,
+                                child: RoundedButton(
+                                  press: () => controller.login(),
+                                  text: 'Login',
+                                ))),
+                            Obx(
+                              () => Visibility(
+                                visible: controller.loading.value,
+                                child: Container(
+                                  margin: EdgeInsets.symmetric(vertical: 10),
+                                  width: Get.width * 0.8,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(29),
+                                    child: TextButton(
+                                      onPressed: () => {},
+                                      style: flatButtonStyle,
+                                      child: CircularProgressIndicator(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            // fechar abaixo ]
+                          ]))
+                ]),
               ],
             ),
           ],
-      )
-    );
+        ));
   }
 }
