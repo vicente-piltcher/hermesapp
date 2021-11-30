@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:hermesapp/app/modules/card_detail/card_detail-binding.dart';
+import 'package:hermesapp/app/modules/card_detail/card_detail-view.dart';
 import 'package:hermesapp/app/modules/initial/initial-binding.dart';
 import 'package:hermesapp/app/modules/initial/initial-view.dart';
 import 'package:hermesapp/app/modules/login/login-binding.dart';
@@ -32,6 +34,11 @@ class AppPages {
       name: Routes.SIGNUP,
       page: () => SignupPage(),
       binding: SignupBinding(),
+    ),
+    GetPage(
+      name: Routes.CARD_DETAIL,
+      page: () => CardDetail(),
+      binding: CardDetailBinding(),
     ),
   ];
 }
