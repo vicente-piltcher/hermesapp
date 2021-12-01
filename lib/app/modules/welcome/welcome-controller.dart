@@ -18,7 +18,7 @@ class WelcomeController extends GetxController {
   openCard(id){
     var url = '/card-detail/' + id.toString();
     print(url);
-    Get.toNamed(url, arguments: {id: id.toString()});
+    Get.toNamed(url, arguments: id.toString());
   }
 
   loadNews() async {

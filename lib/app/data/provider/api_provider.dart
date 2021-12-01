@@ -20,6 +20,13 @@ class ApiProvider extends GetConnect {
     }
   }
 
+  getDataCard(id) async{
+    var response = await get('https://jsonplaceholder.typicode.com/todos/'+ id.toString());
+    if (response.statusCode == 200) {
+      return response.body;
+    }
+  }
+
   getWithToken(url) {
     final token = verifyAuth();
     return get(url, headers: {'Authorization': 'Bearer ${token}'});

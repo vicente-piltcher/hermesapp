@@ -5,22 +5,30 @@ import 'package:hermesapp/app/routes/app-routes.dart';
 
 class CardDetailController extends GetxController {
   final dataCards = Get.find<ApiProvider>();
-  var listCards = <CardModel>{}.obs;
+  var title = ''.obs;
+  var completed = false.obs;
+  var user = ''.obs;
 
   @override
   void onInit() {
     print('cardView');
-    print(Get.arguments);
+    loadTask(Get.arguments);
     super.onInit();
   }
 
 
 
-  loadNews() async {
-    var data = await dataCards.getDataForCards();
-    //data.forEach((e) {
-      listCards = CardModel.fromJson(data) as RxSet<CardModel>;
-    //});
+  loadTask(id) async {
+    var data = await dataCards.getDataCard(id);
+    title.value = data['title'];
+    completed.value = data['completed'];
+    user.value = data['userId'];
   }
+
+  // setData(CardModel data){
+  //   card.value = CardModel.fromJson(data);
+  // }
 }
+
+
 

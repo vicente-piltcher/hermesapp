@@ -8,9 +8,20 @@ class CardDetail extends GetView<CardDetailController> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: AppBar(title: Text('test')),
-        body:  Container(
-              child: Text('ok'),
-            ));
+        appBar: AppBar(title:  Obx(() => Text('Descrição: ' + controller.title.value))),
+        body:   Container(
+    child: Obx(() => Card(
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        ListTile(
+          leading: Icon(controller.completed.value ? Icons.check : Icons.close, color: controller.completed.value ? Colors.green : Colors.red),
+          title: Text('Task: ' + controller.title.value),
+          subtitle: Text(controller.completed.value ? 'Completado' : 'A Fazer'),
+        ),
+      ],
+    ),
+    )),
+    ));
   }
 }
